@@ -31,23 +31,23 @@ class LinkedList:
             yield 현재노드.data
             현재노드 = 현재노드.next
 
-    def append(self, data): # 데이터가 들어왔을 때 새로운 노드를 생성
-        새로운노드 = Node(data)
-        # self.tail은 마지막 노드고 마지막 노드의 next 값은 None로 되어있다. 
-        # 이 None을 새로운 노드로 만들어 주겠다는 뜻, append는 마지막에 값을 추가하기 때문
-        self.tail.next = 새로운노드
-        self.tail = 새로운노드 
+    def append(self, data): 
+        새로운노드 = Node(data) # 데이터가 들어왔을 때 새로운 노드를 생성
+        # 마지막 노드(self.tail)의 next값 None를 새로운 노드로 바꿔서 마지막 노드가 새로운 노드를 가리키게 한다.
+        self.tail.next = 새로운노드 # init -> None에서 init -> 10이 된다.
+        self.tail = 새로운노드
         self.데이터수 += 1
 
     def insert(self, input_index, input_data): 
-        현재노드 = self.head
+        현재노드 = self.head # init
+        # [10, 20, 30, 40, 50, 15] 일때
+        # index 3위치에 data 12를 집어넣기
+        for i in range(input_index): # 3번 반복
+            현재노드 = 현재노드.next # init -> 10, 10 -> 20, 20 -> 30, 현재노드는 30
 
-        for i in range(input_index):
-            현재노드 = 현재노드.next
-
-        신규노드 = Node(input_data)
-        신규노드.next = 현재노드.next
-        현재노드.next = 신규노드
+        신규노드 = Node(input_data) # 값 12인 노드 생성
+        신규노드.next = 현재노드.next # 12의 next를 30의 next인 40으로 변경 12 -> 40
+        현재노드.next = 신규노드 # 30의 next를 40에서 12로 변경 30 -> 12 -> 40
 
         self.데이터수 += 1
 
@@ -106,6 +106,7 @@ l.append(15)
 # print(l.head.data) # init
 # print(l.head.next.data) # 10
 # print(l.head.next.next.data) # 20
+
 # print(l.tail.data) # 15
 # print(l.데이터수) # 6
 # print(len(l)) # 6
@@ -119,7 +120,5 @@ l.append(15)
 # for i in l:
 #     print(i)
 
-l.insert(2, 10000)
-print(l)
-l.insert(4, 100000)
+l.insert(3, 12)
 print(l)

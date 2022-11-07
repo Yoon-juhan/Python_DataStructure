@@ -3,7 +3,7 @@ class Node:
         self.data = data # 처음에 노드를 생성하면 self의 data에 넣는다.
         self.next = None
 
-class LinkedList:
+class SinglyLinkedList:
     def __init__(self):
         init = Node('init')
         self.head = init
@@ -95,7 +95,7 @@ class LinkedList:
 # 이런 방식의 반복
 
 
-l = LinkedList()
+l = SinglyLinkedList()
 l.append(10)
 l.append(20)
 l.append(30)
